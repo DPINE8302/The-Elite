@@ -1,0 +1,661 @@
+// Real 2024 Stock Market Data - Pre-loaded for simulation
+export interface StockData {
+  symbol: string;
+  companyName: string;
+  price: number;
+  change: number;
+  changePercent: number;
+  volume: number;
+  marketCap: string;
+  peRatio: number | null;
+  high52w: number;
+  low52w: number;
+  sector: string;
+  industry: string;
+  dividendYield: number | null;
+  beta: number | null;
+  eps: number | null;
+  revenue: string;
+  employees: number;
+  founded: number;
+  headquarters: string;
+  description: string;
+}
+
+// Major Tech Stocks
+export const TECH_STOCKS: StockData[] = [
+  {
+    symbol: "AAPL",
+    companyName: "Apple Inc.",
+    price: 185.92,
+    change: 2.45,
+    changePercent: 1.34,
+    volume: 45782000,
+    marketCap: "2.89T",
+    peRatio: 28.5,
+    high52w: 199.62,
+    low52w: 164.08,
+    sector: "Technology",
+    industry: "Consumer Electronics",
+    dividendYield: 0.52,
+    beta: 1.25,
+    eps: 6.57,
+    revenue: "383.29B",
+    employees: 161000,
+    founded: 1976,
+    headquarters: "Cupertino, CA",
+    description: "Apple designs, manufactures, and markets smartphones, personal computers, tablets, wearables, and accessories worldwide."
+  },
+  {
+    symbol: "MSFT",
+    companyName: "Microsoft Corporation",
+    price: 421.78,
+    change: -3.22,
+    changePercent: -0.76,
+    volume: 23456000,
+    marketCap: "3.14T",
+    peRatio: 35.2,
+    high52w: 468.35,
+    low52w: 324.39,
+    sector: "Technology",
+    industry: "Software",
+    dividendYield: 0.68,
+    beta: 0.89,
+    eps: 12.05,
+    revenue: "227.58B",
+    employees: 228000,
+    founded: 1975,
+    headquarters: "Redmond, WA",
+    description: "Microsoft develops, licenses, and supports software, services, devices, and solutions worldwide."
+  },
+  {
+    symbol: "GOOGL",
+    companyName: "Alphabet Inc.",
+    price: 175.43,
+    change: 4.67,
+    changePercent: 2.74,
+    volume: 18923000,
+    marketCap: "2.17T",
+    peRatio: 25.8,
+    high52w: 191.75,
+    low52w: 129.40,
+    sector: "Technology",
+    industry: "Internet Services",
+    dividendYield: null,
+    beta: 1.12,
+    eps: 6.80,
+    revenue: "307.39B",
+    employees: 190000,
+    founded: 1998,
+    headquarters: "Mountain View, CA",
+    description: "Alphabet provides online advertising services in the United States and internationally through Google."
+  },
+  {
+    symbol: "NVDA",
+    companyName: "NVIDIA Corporation",
+    price: 875.28,
+    change: 45.67,
+    changePercent: 5.50,
+    volume: 67890000,
+    marketCap: "2.16T",
+    peRatio: 65.4,
+    high52w: 950.02,
+    low52w: 200.43,
+    sector: "Technology",
+    industry: "Semiconductors",
+    dividendYield: 0.03,
+    beta: 1.68,
+    eps: 13.38,
+    revenue: "126.96B",
+    employees: 35000,
+    founded: 1993,
+    headquarters: "Santa Clara, CA",
+    description: "NVIDIA designs graphics processing units for gaming and professional markets, as well as AI computing platforms."
+  },
+  {
+    symbol: "TSLA",
+    companyName: "Tesla, Inc.",
+    price: 248.87,
+    change: -8.43,
+    changePercent: -3.28,
+    volume: 89123000,
+    marketCap: "792.4B",
+    peRatio: 64.2,
+    high52w: 299.29,
+    low52w: 138.80,
+    sector: "Consumer Cyclical",
+    industry: "Auto Manufacturers",
+    dividendYield: null,
+    beta: 2.31,
+    eps: 3.88,
+    revenue: "134.86B",
+    employees: 140000,
+    founded: 2003,
+    headquarters: "Austin, TX",
+    description: "Tesla designs, develops, manufactures, and sells electric vehicles and energy generation and storage systems."
+  }
+];
+
+// Financial Stocks
+export const FINANCIAL_STOCKS: StockData[] = [
+  {
+    symbol: "JPM",
+    companyName: "JPMorgan Chase & Co.",
+    price: 189.45,
+    change: 1.23,
+    changePercent: 0.65,
+    volume: 12345000,
+    marketCap: "555.8B",
+    peRatio: 12.8,
+    high52w: 206.58,
+    low52w: 135.19,
+    sector: "Financial Services",
+    industry: "Banks - Diversified",
+    dividendYield: 2.15,
+    beta: 1.14,
+    eps: 14.81,
+    revenue: "158.10B",
+    employees: 295000,
+    founded: 1799,
+    headquarters: "New York, NY",
+    description: "JPMorgan Chase provides investment banking, financial services for consumers and small businesses, commercial banking, and asset management."
+  },
+  {
+    symbol: "BRK-A",
+    companyName: "Berkshire Hathaway Inc.",
+    price: 543200,
+    change: 1250,
+    changePercent: 0.23,
+    volume: 1234,
+    marketCap: "883.2B",
+    peRatio: 9.2,
+    high52w: 578000,
+    low52w: 447711,
+    sector: "Financial Services",
+    industry: "Insurance - Diversified",
+    dividendYield: null,
+    beta: 0.88,
+    eps: 59076,
+    revenue: "364.48B",
+    employees: 396500,
+    founded: 1839,
+    headquarters: "Omaha, NE",
+    description: "Berkshire Hathaway owns subsidiaries engaged in insurance, freight rail transportation, energy generation and distribution, manufacturing, and retailing."
+  },
+  {
+    symbol: "GS",
+    companyName: "The Goldman Sachs Group, Inc.",
+    price: 478.92,
+    change: -5.67,
+    changePercent: -1.17,
+    volume: 2345000,
+    marketCap: "166.1B",
+    peRatio: 15.1,
+    high52w: 519.69,
+    low52w: 277.84,
+    sector: "Financial Services",
+    industry: "Capital Markets",
+    dividendYield: 2.35,
+    beta: 1.42,
+    eps: 31.73,
+    revenue: "44.56B",
+    employees: 49100,
+    founded: 1869,
+    headquarters: "New York, NY",
+    description: "Goldman Sachs provides investment banking, securities, and investment management services to corporations, financial institutions, governments, and individuals."
+  }
+];
+
+// Healthcare & Biotech
+export const HEALTHCARE_STOCKS: StockData[] = [
+  {
+    symbol: "JNJ",
+    companyName: "Johnson & Johnson",
+    price: 151.23,
+    change: 0.89,
+    changePercent: 0.59,
+    volume: 8765000,
+    marketCap: "393.2B",
+    peRatio: 14.8,
+    high52w: 169.94,
+    low52w: 142.05,
+    sector: "Healthcare",
+    industry: "Drug Manufacturers - General",
+    dividendYield: 3.12,
+    beta: 0.67,
+    eps: 10.22,
+    revenue: "85.16B",
+    employees: 154000,
+    founded: 1886,
+    headquarters: "New Brunswick, NJ",
+    description: "Johnson & Johnson researches, develops, manufactures, and sells various products in the healthcare field worldwide."
+  },
+  {
+    symbol: "UNH",
+    companyName: "UnitedHealth Group Incorporated",
+    price: 598.76,
+    change: 12.34,
+    changePercent: 2.10,
+    volume: 3456000,
+    marketCap: "557.8B",
+    peRatio: 25.6,
+    high52w: 635.04,
+    low52w: 445.68,
+    sector: "Healthcare",
+    industry: "Healthcare Plans",
+    dividendYield: 1.23,
+    beta: 0.78,
+    eps: 23.38,
+    revenue: "371.62B",
+    employees: 440000,
+    founded: 1977,
+    headquarters: "Minnetonka, MN",
+    description: "UnitedHealth Group operates as a diversified healthcare company in the United States."
+  }
+];
+
+// Energy & Commodities
+export const ENERGY_STOCKS: StockData[] = [
+  {
+    symbol: "XOM",
+    companyName: "Exxon Mobil Corporation",
+    price: 117.89,
+    change: 2.45,
+    changePercent: 2.12,
+    volume: 15678000,
+    marketCap: "497.3B",
+    peRatio: 13.2,
+    high52w: 125.32,
+    low52w: 95.77,
+    sector: "Energy",
+    industry: "Oil & Gas Integrated",
+    dividendYield: 3.45,
+    beta: 1.34,
+    eps: 8.93,
+    revenue: "413.68B",
+    employees: 62000,
+    founded: 1999,
+    headquarters: "Spring, TX",
+    description: "Exxon Mobil engages in the exploration and production of crude oil and natural gas in the United States and internationally."
+  }
+];
+
+// Consumer & Retail
+export const CONSUMER_STOCKS: StockData[] = [
+  {
+    symbol: "AMZN",
+    companyName: "Amazon.com, Inc.",
+    price: 181.34,
+    change: 3.67,
+    changePercent: 2.06,
+    volume: 34567000,
+    marketCap: "1.89T",
+    peRatio: 45.8,
+    high52w: 201.20,
+    low52w: 118.35,
+    sector: "Consumer Cyclical",
+    industry: "Internet Retail",
+    dividendYield: null,
+    beta: 1.33,
+    eps: 3.96,
+    revenue: "574.79B",
+    employees: 1540000,
+    founded: 1994,
+    headquarters: "Seattle, WA",
+    description: "Amazon provides online retail shopping services and cloud computing services."
+  },
+  {
+    symbol: "WMT",
+    companyName: "Walmart Inc.",
+    price: 167.89,
+    change: 1.23,
+    changePercent: 0.74,
+    volume: 9876000,
+    marketCap: "678.9B",
+    peRatio: 28.9,
+    high52w: 175.45,
+    low52w: 141.84,
+    sector: "Consumer Defensive",
+    industry: "Discount Stores",
+    dividendYield: 2.23,
+    beta: 0.52,
+    eps: 5.81,
+    revenue: "648.13B",
+    employees: 2100000,
+    founded: 1962,
+    headquarters: "Bentonville, AR",
+    description: "Walmart engages in the operation of retail, wholesale, and other units worldwide."
+  }
+];
+
+// Additional Popular Stocks
+export const ADDITIONAL_STOCKS: StockData[] = [
+  // More Tech
+  {
+    symbol: "META",
+    companyName: "Meta Platforms, Inc.",
+    price: 521.78,
+    change: 8.45,
+    changePercent: 1.65,
+    volume: 15678000,
+    marketCap: "1.32T",
+    peRatio: 24.8,
+    high52w: 542.81,
+    low52w: 274.39,
+    sector: "Technology",
+    industry: "Internet Content & Information",
+    dividendYield: 0.37,
+    beta: 1.18,
+    eps: 21.03,
+    revenue: "134.90B",
+    employees: 77805,
+    founded: 2004,
+    headquarters: "Menlo Park, CA",
+    description: "Meta builds technology that helps people connect, find communities, and grow businesses through family of apps and Reality Labs."
+  },
+  {
+    symbol: "NFLX",
+    companyName: "Netflix, Inc.",
+    price: 698.54,
+    change: 12.89,
+    changePercent: 1.88,
+    volume: 4567000,
+    marketCap: "301.2B",
+    peRatio: 43.2,
+    high52w: 711.33,
+    low52w: 344.73,
+    sector: "Communication Services",
+    industry: "Entertainment",
+    dividendYield: null,
+    beta: 1.35,
+    eps: 16.17,
+    revenue: "33.72B",
+    employees: 15000,
+    founded: 1997,
+    headquarters: "Los Gatos, CA",
+    description: "Netflix is a streaming entertainment service with over 260 million paid memberships in over 190 countries."
+  },
+  {
+    symbol: "AMD",
+    companyName: "Advanced Micro Devices, Inc.",
+    price: 165.43,
+    change: 4.67,
+    changePercent: 2.91,
+    volume: 25789000,
+    marketCap: "267.8B",
+    peRatio: 156.4,
+    high52w: 227.30,
+    low52w: 93.12,
+    sector: "Technology",
+    industry: "Semiconductors",
+    dividendYield: null,
+    beta: 1.97,
+    eps: 1.06,
+    revenue: "22.68B",
+    employees: 26000,
+    founded: 1969,
+    headquarters: "Santa Clara, CA",
+    description: "AMD designs and integrates technology for intelligent devices with rich multimedia."
+  },
+  {
+    symbol: "INTC",
+    companyName: "Intel Corporation",
+    price: 23.45,
+    change: -0.67,
+    changePercent: -2.78,
+    volume: 89567000,
+    marketCap: "100.4B",
+    peRatio: -5.8,
+    high52w: 51.28,
+    low52w: 18.51,
+    sector: "Technology",
+    industry: "Semiconductors",
+    dividendYield: 1.94,
+    beta: 0.67,
+    eps: -4.05,
+    revenue: "77.87B",
+    employees: 124800,
+    founded: 1968,
+    headquarters: "Santa Clara, CA",
+    description: "Intel designs, manufactures, and sells computer components and related products worldwide."
+  },
+  {
+    symbol: "CRM",
+    companyName: "Salesforce, Inc.",
+    price: 298.76,
+    change: 5.89,
+    changePercent: 2.01,
+    volume: 6789000,
+    marketCap: "298.9B",
+    peRatio: 58.9,
+    high52w: 327.20,
+    low52w: 211.76,
+    sector: "Technology",
+    industry: "Software - Application",
+    dividendYield: null,
+    beta: 1.09,
+    eps: 5.07,
+    revenue: "34.86B",
+    employees: 79390,
+    founded: 1999,
+    headquarters: "San Francisco, CA",
+    description: "Salesforce provides customer relationship management technology that brings companies and customers together."
+  },
+  // Financial Services
+  {
+    symbol: "V",
+    companyName: "Visa Inc.",
+    price: 285.67,
+    change: 3.45,
+    changePercent: 1.22,
+    volume: 7890000,
+    marketCap: "615.2B",
+    peRatio: 32.4,
+    high52w: 296.67,
+    low52w: 227.68,
+    sector: "Financial Services",
+    industry: "Credit Services",
+    dividendYield: 0.74,
+    beta: 0.98,
+    eps: 8.81,
+    revenue: "32.65B",
+    employees: 29600,
+    founded: 1958,
+    headquarters: "San Francisco, CA",
+    description: "Visa operates a payments technology platform that connects consumers, merchants, financial institutions, and government entities."
+  },
+  {
+    symbol: "MA",
+    companyName: "Mastercard Incorporated",
+    price: 456.78,
+    change: 6.78,
+    changePercent: 1.51,
+    volume: 3456000,
+    marketCap: "434.5B",
+    peRatio: 33.8,
+    high52w: 490.00,
+    low52w: 359.81,
+    sector: "Financial Services",
+    industry: "Credit Services",
+    dividendYield: 0.51,
+    beta: 1.04,
+    eps: 13.52,
+    revenue: "25.10B",
+    employees: 33400,
+    founded: 1966,
+    headquarters: "Purchase, NY",
+    description: "Mastercard provides transaction processing and other payment-related products and services."
+  },
+  // Healthcare & Pharma
+  {
+    symbol: "PFE",
+    companyName: "Pfizer Inc.",
+    price: 28.45,
+    change: 0.56,
+    changePercent: 2.01,
+    volume: 45678000,
+    marketCap: "159.8B",
+    peRatio: 12.7,
+    high52w: 37.96,
+    low52w: 25.20,
+    sector: "Healthcare",
+    industry: "Drug Manufacturers - General",
+    dividendYield: 5.95,
+    beta: 0.67,
+    eps: 2.24,
+    revenue: "58.50B",
+    employees: 83000,
+    founded: 1849,
+    headquarters: "New York, NY",
+    description: "Pfizer discovers, develops, manufactures, markets, distributes, and sells biopharmaceutical products worldwide."
+  },
+  {
+    symbol: "MRNA",
+    companyName: "Moderna, Inc.",
+    price: 89.23,
+    change: 2.34,
+    changePercent: 2.69,
+    volume: 8976000,
+    marketCap: "33.4B",
+    peRatio: 7.2,
+    high52w: 170.47,
+    low52w: 62.56,
+    sector: "Healthcare",
+    industry: "Biotechnology",
+    dividendYield: null,
+    beta: 1.58,
+    eps: 12.39,
+    revenue: "6.70B",
+    employees: 5650,
+    founded: 2010,
+    headquarters: "Cambridge, MA",
+    description: "Moderna develops messenger RNA therapeutics and vaccines for infectious diseases, immuno-oncology, rare diseases, and cardiovascular diseases."
+  },
+  // Consumer & Retail
+  {
+    symbol: "COST",
+    companyName: "Costco Wholesale Corporation",
+    price: 867.45,
+    change: 5.67,
+    changePercent: 0.66,
+    volume: 1234000,
+    marketCap: "384.7B",
+    peRatio: 56.8,
+    high52w: 896.51,
+    low52w: 571.49,
+    sector: "Consumer Defensive",
+    industry: "Discount Stores",
+    dividendYield: 0.51,
+    beta: 0.67,
+    eps: 15.27,
+    revenue: "249.63B",
+    employees: 304000,
+    founded: 1976,
+    headquarters: "Issaquah, WA",
+    description: "Costco operates membership warehouses based on the concept of offering members low prices on a limited selection of branded and private-label products."
+  },
+  {
+    symbol: "NKE",
+    companyName: "NIKE, Inc.",
+    price: 75.23,
+    change: -1.45,
+    changePercent: -1.89,
+    volume: 6789000,
+    marketCap: "117.8B",
+    peRatio: 23.9,
+    high52w: 123.39,
+    low52w: 70.75,
+    sector: "Consumer Cyclical",
+    industry: "Footwear & Accessories",
+    dividendYield: 1.45,
+    beta: 0.89,
+    eps: 3.15,
+    revenue: "51.22B",
+    employees: 83700,
+    founded: 1964,
+    headquarters: "Beaverton, OR",
+    description: "Nike designs, develops, markets, and sells athletic footwear, apparel, equipment, and accessories worldwide."
+  },
+  // Aerospace & Defense
+  {
+    symbol: "BA",
+    companyName: "The Boeing Company",
+    price: 178.45,
+    change: 3.67,
+    changePercent: 2.10,
+    volume: 8765000,
+    marketCap: "105.2B",
+    peRatio: -9.8,
+    high52w: 267.54,
+    low52w: 159.71,
+    sector: "Industrials",
+    industry: "Aerospace & Defense",
+    dividendYield: null,
+    beta: 1.64,
+    eps: -18.21,
+    revenue: "77.79B",
+    employees: 171000,
+    founded: 1916,
+    headquarters: "Chicago, IL",
+    description: "Boeing designs, develops, manufactures, sales, services, and supports commercial jetliners, military aircraft, satellites, missile defense, and space systems."
+  },
+  // Telecommunications
+  {
+    symbol: "T",
+    companyName: "AT&T Inc.",
+    price: 20.34,
+    change: 0.23,
+    changePercent: 1.14,
+    volume: 34567000,
+    marketCap: "145.8B",
+    peRatio: 9.1,
+    high52w: 22.73,
+    low52w: 15.94,
+    sector: "Communication Services",
+    industry: "Telecom Services",
+    dividendYield: 5.98,
+    beta: 0.65,
+    eps: 2.24,
+    revenue: "122.43B",
+    employees: 160700,
+    founded: 1983,
+    headquarters: "Dallas, TX",
+    description: "AT&T provides telecommunications, media, and technology services to consumers and businesses worldwide."
+  }
+];
+
+// All stocks combined
+export const ALL_STOCKS: StockData[] = [
+  ...TECH_STOCKS,
+  ...FINANCIAL_STOCKS,
+  ...HEALTHCARE_STOCKS,
+  ...ENERGY_STOCKS,
+  ...CONSUMER_STOCKS,
+  ...ADDITIONAL_STOCKS
+];
+
+// Market indices data
+export const MARKET_INDICES = {
+  "SPY": { name: "S&P 500 ETF", price: 485.23, change: 2.34, changePercent: 0.48 },
+  "QQQ": { name: "NASDAQ 100 ETF", price: 421.56, change: -1.89, changePercent: -0.45 },
+  "DIA": { name: "Dow Jones ETF", price: 398.67, change: 3.45, changePercent: 0.87 },
+  "IWM": { name: "Russell 2000 ETF", price: 198.34, change: 1.23, changePercent: 0.62 },
+  "VTI": { name: "Total Stock Market ETF", price: 264.78, change: 2.11, changePercent: 0.80 }
+};
+
+// Crypto data
+export const CRYPTO_DATA = {
+  "BTC": { name: "Bitcoin", price: 67845.32, change: 1234.56, changePercent: 1.85 },
+  "ETH": { name: "Ethereum", price: 3456.78, change: -87.65, changePercent: -2.47 },
+  "BNB": { name: "Binance Coin", price: 598.23, change: 12.34, changePercent: 2.10 },
+  "SOL": { name: "Solana", price: 187.45, change: 8.76, changePercent: 4.90 },
+  "ADA": { name: "Cardano", price: 0.89, change: 0.03, changePercent: 3.49 }
+};
+
+// Commodities data
+export const COMMODITIES_DATA = {
+  "GOLD": { name: "Gold", price: 2048.30, change: 15.67, changePercent: 0.77 },
+  "SILVER": { name: "Silver", price: 24.89, change: -0.34, changePercent: -1.35 },
+  "OIL": { name: "Crude Oil WTI", price: 78.56, change: 2.11, changePercent: 2.76 },
+  "NATGAS": { name: "Natural Gas", price: 2.34, change: -0.08, changePercent: -3.30 }
+};

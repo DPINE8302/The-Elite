@@ -1,0 +1,72 @@
+Game Title: The Elite
+Core Philosophy: A Simulation of Consequence
+The Elite is not a game of accumulation; it is a real-time, high-fidelity simulation of consequence. It models the intricate, often brutal, reality of possessing and wielding planet-scale wealth and influence. The core experience is a tightrope walk between ambition, paranoia, strategy, and the crushing weight of responsibility. Every decision has cascading, often irreversible, effects.
+Tagline: Wealth is a weapon. Power is a cage. Legacy is the only game.
+
+I. The Genesis Engine: Forging Your Reality
+Your simulation begins with a multi-stage creation process. Your choices here define the very physics of your playthrough.
+1. Lineage: The Source of Power
+* Old Money (The Custodian): You inherit a $50B fortune locked in a web of generational trusts and holding companies.
+    * Mechanics: High prestige, deep-rooted political access, and tax-sheltered assets. However, you have low liquidity, face resistance from a conservative board of trustees, and are burdened by the public expectations of your family name.
+* New Money (The Architect): You are the founder of a tech/finance company that has just gone public, leaving you with a $50B net worth, 90% of which is in company stock.
+    * Mechanics: Massive liquidity (after lock-up period), total control of your flagship company, and a "visionary" public image. However, your wealth is volatile, you have no inherited political network, and the establishment views you with suspicion.
+2. Archetype: The Mind of the Titan This choice provides unique abilities, dictates your psychological stressors, and unlocks specific gameplay paths.
+* The Disruptor (High-Risk Innovation): Bonus to R&D speed and a "Reality Distortion Field" ability to boost stock prices and employee morale through public announcements. Prone to "Production Hell" crises and SEC scrutiny.
+* The Oracle (Value & Compounding): Unique "Deep Dive Analysis" ability reveals hidden financial data in potential acquisitions. Excels at long-term, low-risk growth. Suffers stress from market volatility and hype cycles.
+* The Conqueror (Corporate Warfare): Bonuses for hostile takeovers, LBOs, and supply chain optimization. Unlocks aggressive "Smear Campaign" and "Opposition Research" actions. Prone to antitrust lawsuits and employee loyalty crises.
+* The Tastemaker (Cultural Dominance): Unique "Brand Aura" ability increases the value of luxury and media assets. Excels at M&A of heritage brands and art collection. Must constantly manage the fickle tastes of the public and critics.
+3. The First Crisis: The Immediate Challenge You begin in medias res, with a fire to put out. Your choice of crisis tests your chosen Archetype's strengths from day one. Examples: a hostile takeover bid, a key product launch failure, a personal scandal breaking in the media, or a betrayal from your inner circle.
+
+II. The Aegis OS: The Interface of Absolute Control
+Your portal to the world is a sleek, minimalist, and data-dense operating system. It is your only tool and your greatest vulnerability.
+* Command Dashboard: The home screen. Shows only mission-critical data: Liquid Cash, 24h Net Worth Fluctuation, Daily Burn Rate, and Global Threat Level.
+* Global Monitor: An interactive 3D world map displaying your assets, corporate locations, real-time flight/shipping routes, and overlays for political stability, market sentiment, and active crises.
+* The Dossier: A deep intelligence database on every person, company, and asset you interact with. It tracks relationships, loyalty scores, financial health, and potential vulnerabilities.
+* The Briefing: Each day starts with a concise, actionable summary from your Chief of Staff, highlighting urgent decisions, market movements, and intelligence updates.
+* The Sanctum: A dedicated module for managing your personal security, health biometrics, and family affairs.
+* The Vault: A secure repository for all your legal documents, from term sheets to prenuptial agreements.
+
+III. The Four Pillars of Power: The Arenas of Action
+These four interconnected pillars are where you will spend your time and capital, all managed through your Aegis OS.
+Pillar 1: CAPITAL (The Engine of Wealth)
+Deploying money to make more money. This is a deep financial simulation.
+* Public Markets: Trade stocks, ETFs, currencies, commodities, and complex derivatives in real-time. Execute dark pool trades and use leverage via your prime brokerage account.
+* Private Markets:
+    * Venture Capital: Establish a fund, set a thesis, perform due diligence on simulated pitch decks and financial models, negotiate term sheets, and take board seats to steer your investments.
+    * Private Equity: Identify and execute Leveraged Buyouts (LBOs). Take companies private, restructure them through ruthless efficiency decisions, and exit via IPO or strategic sale.
+* Real Estate Development: Acquire land, hire "starchitects," navigate zoning laws (requiring political influence), manage construction, and decide to lease or sell your creations, from skyscrapers to luxury resorts.
+* Debt & Credit: Lend money to corporations or even nations. Buying a country's sovereign debt can be a powerful tool for political leverage.
+Pillar 2: CREATION (The Forge of Enterprise)
+Building new entities from the ground up.
+* Founding New Ventures: Conceive a company, poach top-tier talent, provide seed funding, and manage its entire lifecycle from a stealth-mode startup to a global behemoth. Set grand strategy for R&D, manufacturing, and marketing.
+* The "Skunkworks" Division: Fund a black-box internal R&D lab with a moonshot goal (e.g., AGI, Life Extension, Fusion). Pour in billions for a chance at a world-changing, priceless patent.
+* Intellectual Property: File for patents on your innovations. Create a legal "war chest" to defend them from rivals or to engage in patent litigation to kneecap competitors.
+Pillar 3: CONSUMPTION (The Performance of Power)
+Spending money not just on assets, but on statements. Every purchase has a purpose and an ongoing cost.
+* Trophy Assets:
+    * Commission a Superyacht/Jet: A multi-year project involving shipyards, designers, and massive cost overruns. Once complete, it adds millions in annual running costs to your Burn Rate.
+    * Build a Car Collection: Acquire a stable of hypercars and classics. Each requires insurance, specialized maintenance, and secure storage.
+* The Property Portfolio: Acquire and manage iconic homes around the world. Each must be staffed, secured, and maintained. Hire world-famous interior designers for customization and prestige bonuses.
+* Art & Collectibles: Participate in real-time auctions at Christie's/Sotheby's. Outbid rivals for unique masterpieces. Loaning your art to museums generates "Soft Power."
+* Experiences & Spectacles: Throw lavish parties, fund expeditions, charter private islands. These are massive money sinks designed purely to build your social network and prestige.
+Pillar 4: CONTROL (The Architecture of Influence)
+Bending the world to your will.
+* Political Machinery: Hire specific K-Street lobbying firms to push for favorable legislation or kill hostile bills. Fund political campaigns to gain access and influence.
+* Media Empire: Acquire newspapers, TV networks, or social media platforms. Subtly (or overtly) control the editorial stance to shape public opinion, promote your ventures, and attack your rivals.
+* Philanthropy as a Weapon: Establish a foundation with a grand mission (e.g., The "Apex Prize" for curing a disease). This is a powerful tool for legacy-building, generating positive PR, and creating tax write-offs.
+* Cultural Patronage: Become the primary funder for the Met Gala, build a new wing at a museum, or finance a slate of Oscar-contending films. This embeds your name into the fabric of culture.
+
+IV. The Dynamic World: A Living, Breathing Simulation
+The world does not revolve around you; it reacts to you.
+* Active Rivals: The other AI-controlled titans (Musk, Arnault, etc. archetypes) are pursuing their own goals. They will compete with you for deals, try to poach your executives, launch smear campaigns, or propose alliances of convenience.
+* "Black Swan" Events: The simulation will be rocked by unpredictable global events: financial market crashes, pandemics, geopolitical conflicts, natural disasters. These events stress-test your empire and can bankrupt the unprepared.
+* The Inner Circle: A deep simulation of your personal relationships. Your spouse, children, and top executives have their own desires and a dynamic "Loyalty" score. Neglect them at your peril. A messy divorce, a rebellious heir, or a treacherous CIO can be more damaging than any market crash.
+
+V. The Endgame: The Legacy Report
+There is no "win" screen. When you choose to end your simulation (or when your character dies), the game generates a comprehensive Legacy Report. This is a detailed, narrative summary of your entire career, evaluating you on multiple axes:
+* The Ledger: Final Net Worth and its composition.
+* The Architect: What did you build? Did your companies change the world?
+* The Statesman: How did you wield your political and media power? Were you a kingmaker or a tyrant?
+* The Patriarch/Matriarch: What is the status of your dynasty? Is your heir competent? Is the family fortune secure for generations to come?
+* The Verdict of History: A generated summary of your public perception. Were you remembered as a visionary philanthropist, a ruthless monopolist, an eccentric recluse, or a forgotten footnote?
+Your goal in The Elite is not to get the highest score, but to write the legacy you desire.
