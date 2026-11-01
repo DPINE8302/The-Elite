@@ -200,6 +200,11 @@ export class MemStorage implements IStorage {
     const id = randomUUID();
     const player: Player = { 
       ...insertPlayer, 
+      netWorth: insertPlayer.netWorth ?? "50000000000",
+      liquidCash: insertPlayer.liquidCash ?? "3200000000",
+      dailyBurnRate: insertPlayer.dailyBurnRate ?? "42000000",
+      threatLevel: insertPlayer.threatLevel ?? "MEDIUM",
+      gameActive: insertPlayer.gameActive ?? true,
       id, 
       createdAt: new Date() 
     };
@@ -231,6 +236,7 @@ export class MemStorage implements IStorage {
     const id = randomUUID();
     const holding: PortfolioHolding = { 
       ...insertHolding, 
+      currentPrice: insertHolding.currentPrice ?? "0",
       id, 
       lastUpdated: new Date() 
     };
@@ -291,8 +297,13 @@ export class MemStorage implements IStorage {
     const id = randomUUID();
     const crisis: Crisis = { 
       ...insertCrisis, 
+      status: insertCrisis.status ?? "ACTIVE",
+      timeRemaining: insertCrisis.timeRemaining ?? null,
+      consequences: insertCrisis.consequences ?? null,
+      resolution: insertCrisis.resolution ?? null,
       id, 
-      createdAt: new Date() 
+      createdAt: new Date(),
+      resolvedAt: null
     };
     this.crises.set(id, crisis);
     return crisis;
@@ -325,6 +336,11 @@ export class MemStorage implements IStorage {
     
     const marketData: MarketData = { 
       ...insertMarketData, 
+      volume: insertMarketData.volume ?? null,
+      marketCap: insertMarketData.marketCap ?? null,
+      peRatio: insertMarketData.peRatio ?? null,
+      high52w: insertMarketData.high52w ?? null,
+      low52w: insertMarketData.low52w ?? null,
       id, 
       lastUpdated: new Date() 
     };

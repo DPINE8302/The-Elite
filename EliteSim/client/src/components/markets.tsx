@@ -44,7 +44,7 @@ export default function Markets() {
   const [selectedSector, setSelectedSector] = useState("all");
 
   // Fetch all available stocks
-  const { data: allStocks = [], isLoading: stocksLoading } = useQuery({
+  const { data: allStocks = [], isLoading: stocksLoading } = useQuery<StockData[]>({
     queryKey: ['/api/market/stocks'],
     enabled: !!state.player
   });
@@ -121,19 +121,19 @@ export default function Markets() {
           const newShares = existingHolding.shares + quantity;
           const newAvgCost = ((existingHolding.shares * parseFloat(existingHolding.avgCostBasis)) + tradeValue) / newShares;
           
-          const response = await apiRequest("PUT", `/api/players/${state.player.id}/portfolio/${existingHolding.id}`, {
+        const response = await apiRequest("PUT", `/api/players/${state.player.id}/portfolio/${existingHolding.id}`, {
             shares: newShares,
             avgCostBasis: newAvgCost.toString(),
             currentPrice: selectedStock.price.toString()
           });
 
-          dispatch({ type: "UPDATE_PORTFOLIO_HOLDING", payload: response });
+        dispatch({ type: "UPDATE_PORTFOLIO_HOLDING", payload: await response.json() });
           
           // Update player cash
           const updatedPlayer = await apiRequest("PUT", `/api/players/${state.player.id}`, {
             liquidCash: (liquidCash - tradeValue).toString()
           });
-          dispatch({ type: "UPDATE_PLAYER", payload: updatedPlayer });
+          dispatch({ type: "UPDATE_PLAYER", payload: await updatedPlayer.json() });
         } else {
           // Create new holding
           const newHolding = await apiRequest("POST", `/api/players/${state.player.id}/portfolio`, {
@@ -144,13 +144,13 @@ export default function Markets() {
             currentPrice: selectedStock.price.toString()
           });
 
-          dispatch({ type: "ADD_PORTFOLIO_HOLDING", payload: newHolding });
+          dispatch({ type: "ADD_PORTFOLIO_HOLDING", payload: await newHolding.json() });
           
           // Update player cash
           const updatedPlayer = await apiRequest("PUT", `/api/players/${state.player.id}`, {
             liquidCash: (liquidCash - tradeValue).toString()
           });
-          dispatch({ type: "UPDATE_PLAYER", payload: updatedPlayer });
+          dispatch({ type: "UPDATE_PLAYER", payload: await updatedPlayer.json() });
         }
 
         // Invalidate portfolio query to refresh data
@@ -177,7 +177,7 @@ export default function Markets() {
     ? allStocks 
     : allStocks.filter((stock: StockData) => stock.sector === selectedSector);
 
-  const sectors = [...new Set(allStocks.map((stock: StockData) => stock.sector))];
+  const sectors = Array.from(new Set(allStocks.map((stock: StockData) => stock.sector)));
 
   return (
     <div className="p-6 space-y-6 bg-gray-900 min-h-screen">

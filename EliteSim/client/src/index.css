@@ -48,6 +48,13 @@
   --elite-slate-100: hsl(210, 40%, 98%);
 }
 
+html { color-scheme: dark; scroll-behavior: smooth; }
+body { min-width: 360px; min-height: 100vh; background-image: radial-gradient(ellipse at 15% 0%, hsl(217 75% 18% / .2), transparent 42%), radial-gradient(ellipse at 100% 100%, hsl(260 50% 18% / .12), transparent 38%); }
+button, a, [role="button"] { -webkit-tap-highlight-color: transparent; }
+::selection { background: hsl(217 91% 60% / .35); }
+*:focus-visible { outline: 2px solid hsl(217 91% 70%); outline-offset: 3px; }
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; } }
+
 .dark {
   --background: hsl(222, 84%, 4.9%);
   --foreground: hsl(210, 40%, 98%);

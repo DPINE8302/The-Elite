@@ -60,37 +60,37 @@ export default function WealthEmpire({ playerId }: WealthEmpireProps) {
   const [investmentAmount, setInvestmentAmount] = useState(1000000);
 
   // Fetch all wealth management data
-  const { data: realEstate } = useQuery({
+  const { data: realEstate = [] } = useQuery<any[]>({
     queryKey: ["/api/real-estate"],
     enabled: true
   });
 
-  const { data: artCollectibles } = useQuery({
+  const { data: artCollectibles = [] } = useQuery<any[]>({
     queryKey: ["/api/art-collectibles"],
     enabled: true
   });
 
-  const { data: luxuryVehicles } = useQuery({
+  const { data: luxuryVehicles = [] } = useQuery<any[]>({
     queryKey: ["/api/luxury-vehicles"],
     enabled: true
   });
 
-  const { data: privateInvestments } = useQuery({
+  const { data: privateInvestments = [] } = useQuery<any[]>({
     queryKey: ["/api/private-investments"],
     enabled: true
   });
 
-  const { data: politicalActions } = useQuery({
+  const { data: politicalActions = [] } = useQuery<any[]>({
     queryKey: ["/api/political-actions"],
     enabled: true
   });
 
-  const { data: marketOverview } = useQuery({
+  const { data: marketOverview = {} } = useQuery<any>({
     queryKey: ["/api/market/overview"],
     enabled: true
   });
 
-  const { data: sectorPerformance } = useQuery({
+  const { data: sectorPerformance = [] } = useQuery<any[]>({
     queryKey: ["/api/market/sectors"],
     enabled: true
   });

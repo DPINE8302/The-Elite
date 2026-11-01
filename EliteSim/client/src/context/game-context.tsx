@@ -15,6 +15,7 @@ interface GameState {
 
 type GameAction =
   | { type: "SET_PLAYER"; payload: Player }
+  | { type: "UPDATE_PLAYER"; payload: Player }
   | { type: "SET_PORTFOLIO"; payload: PortfolioHolding[] }
   | { type: "SET_WATCHLIST"; payload: StockWatchlist[] }
   | { type: "SET_CRISES"; payload: Crisis[] }
@@ -42,9 +43,26 @@ const initialState: GameState = {
   error: null,
 };
 
+const SAVE_KEY = "the-elite-campaign-v1";
+
+function loadSavedState(): GameState {
+  if (typeof window === "undefined") return initialState;
+  try {
+    const saved = localStorage.getItem(SAVE_KEY);
+    if (!saved) return initialState;
+    const parsed = JSON.parse(saved) as Partial<GameState>;
+    if (!parsed.player || typeof parsed.player.id !== "string") return initialState;
+    return { ...initialState, ...parsed, gameActive: true, loading: false, error: null };
+  } catch {
+    return initialState;
+  }
+}
+
 function gameReducer(state: GameState, action: GameAction): GameState {
   switch (action.type) {
     case "SET_PLAYER":
+      return { ...state, player: action.payload };
+    case "UPDATE_PLAYER":
       return { ...state, player: action.payload };
     case "SET_PORTFOLIO":
       return { ...state, portfolio: action.payload };
@@ -112,7 +130,45 @@ interface GameContextType {
 const GameContext = createContext<GameContextType | undefined>(undefined);
 
 export function GameContextProvider({ children }: { children: React.ReactNode }) {
-  const [state, dispatch] = useReducer(gameReducer, initialState);
+  const [state, dispatch] = useReducer(gameReducer, undefined, loadSavedState);
+
+  useEffect(() => {
+    if (!state.player) return;
+    try {
+      localStorage.setItem(SAVE_KEY, JSON.stringify(state));
+      localStorage.setItem("the-elite-player-id", state.player.id);
+    } catch (error) {
+      console.warn("Campaign could not be saved on this device:", error);
+    }
+  }, [state]);
+
+  useEffect(() => {
+    const playerId = state.player?.id;
+    if (!playerId || state.portfolio.length || state.watchlist.length || state.crises.length || state.rivals.length) return;
+    let cancelled = false;
+    const restore = async () => {
+      try {
+        const paths = [
+          `/api/players/${playerId}/portfolio`,
+          `/api/players/${playerId}/watchlist`,
+          `/api/players/${playerId}/crises`,
+          "/api/rivals",
+        ];
+        const responses = await Promise.all(paths.map(path => fetch(path)));
+        if (cancelled || responses.some(response => !response.ok)) return;
+        const [portfolio, watchlist, crises, rivals] = await Promise.all(responses.map(response => response.json()));
+        if (cancelled) return;
+        dispatch({ type: "SET_PORTFOLIO", payload: portfolio });
+        dispatch({ type: "SET_WATCHLIST", payload: watchlist });
+        dispatch({ type: "SET_CRISES", payload: crises });
+        dispatch({ type: "SET_RIVALS", payload: rivals });
+      } catch (error) {
+        console.warn("Campaign data could not be restored:", error);
+      }
+    };
+    void restore();
+    return () => { cancelled = true; };
+  }, [state.player?.id, state.portfolio.length, state.watchlist.length, state.crises.length, state.rivals.length]);
 
   const setCurrentSection = useCallback((section: string) => {
     dispatch({ type: "SET_CURRENT_SECTION", payload: section });

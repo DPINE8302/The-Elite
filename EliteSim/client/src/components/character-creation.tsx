@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useEffect } from "react";
 import { useGameContext } from "@/context/game-context";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -20,6 +21,12 @@ export default function CharacterCreation() {
     crisis: null,
   });
   const [loading, setLoading] = useState(false);
+  const [name, setName] = useState("");
+  const [savedCampaign, setSavedCampaign] = useState(false);
+
+  useEffect(() => {
+    setSavedCampaign(Boolean(localStorage.getItem("the-elite-player-id")));
+  }, []);
 
   const handleSelectionClick = (type: keyof CharacterSelections, value: string) => {
     setSelections(prev => ({
@@ -47,14 +54,16 @@ export default function CharacterCreation() {
     setLoading(true);
     try {
       const playerData = {
-        userId: "temp-user-id", // In a real app, this would come from authentication
-        name: "John Doe", // In a real app, this would be user input
+        userId: "local-player",
+        name: name.trim() || "Alex Morgan",
         lineage: selections.lineage!,
         archetype: selections.archetype!,
       };
 
       const response = await apiRequest("POST", "/api/players", playerData);
       const player = await response.json();
+
+      localStorage.setItem("the-elite-player-id", player.id);
 
       dispatch({ type: "SET_PLAYER", payload: player });
       dispatch({ type: "SET_GAME_ACTIVE", payload: true });
@@ -70,6 +79,9 @@ export default function CharacterCreation() {
       if (portfolioRes.ok) {
         const portfolio = await portfolioRes.json();
         dispatch({ type: "SET_PORTFOLIO", payload: portfolio });
+      }
+      if (!portfolioRes.ok || !watchlistRes.ok || !crisesRes.ok || !rivalsRes.ok) {
+        throw new Error("Your campaign started, but some intelligence could not be loaded. Refresh and try again.");
       }
 
       if (watchlistRes.ok) {
@@ -104,8 +116,8 @@ export default function CharacterCreation() {
   };
 
   return (
-    <div className="fixed inset-0 bg-elite-slate-900 flex items-center justify-center">
-      <div className="max-w-4xl w-full mx-4">
+    <div className="min-h-screen bg-elite-slate-900 flex items-center justify-center overflow-y-auto px-4 py-10">
+      <div className="max-w-5xl w-full mx-auto">
         <div className="text-center mb-12 animate-fade-in">
           <h1 className="text-6xl font-bold text-elite-gradient mb-4">THE ELITE</h1>
           <p className="text-xl text-elite-slate-400 mb-2">A Simulation of Consequence</p>
@@ -114,6 +126,10 @@ export default function CharacterCreation() {
 
         <Card className="bg-elite-slate-800/50 backdrop-blur-sm border-elite-slate-700 animate-slide-up">
           <CardContent className="p-8">
+            <label className="mb-7 block max-w-md text-left text-sm font-medium text-elite-slate-300">
+              Your name
+              <input value={name} onChange={event => setName(event.target.value)} maxLength={40} placeholder="Alex Morgan" className="mt-2 w-full rounded-lg border border-elite-slate-600 bg-elite-slate-900/80 px-4 py-3 text-elite-slate-100 placeholder:text-elite-slate-500 focus:outline-none focus:ring-2 focus:ring-blue-500" />
+            </label>
             <div className="grid md:grid-cols-2 gap-8">
               {/* Lineage Selection */}
               <div className="space-y-6">
@@ -241,6 +257,7 @@ export default function CharacterCreation() {
                 {loading ? "Initializing..." : "Begin Simulation"}
               </Button>
             </div>
+            {savedCampaign && <p className="mt-5 text-center text-xs text-elite-slate-400">A previous campaign is saved on this device.</p>}
           </CardContent>
         </Card>
       </div>

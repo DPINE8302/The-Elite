@@ -243,10 +243,10 @@ export async function registerRoutes(app: Express): Promise<Server> {
         playerId: req.params.playerId
       });
 
-      const overview = await fetchCompanyOverview(validatedData.symbol);
+      const stock = getStockData(validatedData.symbol.toUpperCase());
       const watchlistItem = await storage.addToWatchlist({
         ...validatedData,
-        companyName: overview.name
+        companyName: stock.companyName
       });
 
       res.json(watchlistItem);
@@ -337,7 +337,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
       res.json(stockData);
     } catch (error) {
       console.error("Error fetching stock data:", error);
-      res.status(404).json({ error: error.message });
+      res.status(404).json({ error: error instanceof Error ? error.message : "Stock not found" });
     }
   });
 
@@ -518,8 +518,9 @@ export async function registerRoutes(app: Express): Promise<Server> {
         title: randomCrisis.title,
         description: randomCrisis.description,
         severity: randomCrisis.severity as "LOW" | "MEDIUM" | "HIGH" | "CRITICAL",
-        timeLimit: randomCrisis.timeLimit,
-        isResolved: false
+        type: "emergency",
+        timeRemaining: randomCrisis.timeLimit,
+        availableActions: randomCrisis.actions,
       });
       res.json(crisis);
     } catch (error) {
