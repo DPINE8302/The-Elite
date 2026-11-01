@@ -58,6 +58,7 @@ export default function CharacterCreation() {
         name: name.trim() || "Alex Morgan",
         lineage: selections.lineage!,
         archetype: selections.archetype!,
+        crisis: selections.crisis,
       };
 
       const response = await apiRequest("POST", "/api/players", playerData);

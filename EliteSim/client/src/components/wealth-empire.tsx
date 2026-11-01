@@ -98,7 +98,7 @@ export default function WealthEmpire({ playerId }: WealthEmpireProps) {
   // Investment mutation
   const investMutation = useMutation({
     mutationFn: async (data: { type: string; assetId: string; amount: number }) => {
-      return apiRequest(`/api/players/${playerId}/investments`, "POST", data);
+      return apiRequest("POST", `/api/players/${playerId}/investments`, data);
     },
     onSuccess: () => {
       toast({ description: "Investment executed successfully" });
